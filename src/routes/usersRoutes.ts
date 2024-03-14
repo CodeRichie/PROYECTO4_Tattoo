@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { deleteUser, getAllAppointmentsBySuperAdmin, getAllAppointmentsByUserId, getAllUsers, login, profile, register, updateUserById, updateUserRole } from "../controllers/usersController";
+import { usersController } from "../controllers/usersController";
 import { auth } from "../middlewares/auth";
 import { isAdmin } from "../middlewares/isAdmin";
 import { isSuperAdmin } from "../middlewares/isSuperAdmin";
