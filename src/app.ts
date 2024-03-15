@@ -2,8 +2,8 @@ import express, { Application } from "express";
 import cors from "cors";
 import {corsOptions} from "./config/cors";
 import dotenv from "dotenv";
-//import apiRoutes from "./routes/api.routes";
-//import baseRoutes from "./routes/base.routes";
+//importar apiRoutes de "./routes/api.routes";
+//importar baseRoutes de "./routes/base.routes";
 
 //------------------------------------------------------
 
@@ -15,8 +15,8 @@ const app: Application = express();
 app.use(express.json());
 app.use(cors(corsOptions));
 
-//Routes
-//app.get('/',baseRoutes);  //baseRoutes is not defined
-//app.use('/api',apiRoutes);  //apiRoutes is not defined
+//Las Routes
+//app.get('/',baseRoutes);  //baseRoutes no definidas
+//app.use('/api',apiRoutes);  //apiRoutes no definidas
 
 export default app;
