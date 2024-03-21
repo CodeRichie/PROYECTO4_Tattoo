@@ -140,20 +140,23 @@ export const userController = {
     
     async getLogedUser(req:Request,res:Response){
         try {
-            const userId = req.tokenData?.userId;
-            console.log(userId);
-            const user = await User.findOne({
-                relations:{
-                    role:true
-                },
-                where:{
-                    id:userId
-                }
-            });
-            res.json(user).status(200).json({message:"User found successfully"});
+        //     const userId = req.tokenData.userId;
+        //     console.log(userId);
+        //     const user = await User.findOne({
+        //         relations:{
+        //             role:true
+        //         },
+        //         where:{
+        //             id:userId
+        //         }
+        //     });
+        //     res.json(user).status(200).json({message:"User found successfully"});
 
-        }catch(error){
-            res.status(500).json({message:"Something went wrong"});
+        // }catch(error){
+        //     res.status(500).json({message:"Something went wrong"});
+        // }
+        console.log(req);}catch(error){
+            console.log(error);
         }
     },
 
