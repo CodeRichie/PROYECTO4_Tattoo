@@ -8,30 +8,30 @@ export const authMiddleware = (
     next:NextFunction
     ) => {
     
-    // division del token en el header   
+    //split the token from the header    
     const token = req.headers.authorization?.split(" ")[1];
     
-    //si no hay token, devuelve un estado 401
+    //if there is no token, return a 401 status
     if(!token){
         res.status(401).json({message: "Unauthorized"});
         return;
     }
 
     try{
-        //verificacion
+        //verify the token
         const decoded = jwt.verify(
             token, 
             process.env.JWT_SECRET as string
             ) as JwtPayload;
 
-        //añadir el toquen  a la peticion
+        //add the token data to the request    
         req.tokenData = {
             userId: decoded.userId,
             userRole: decoded.userRole,
             }
         
 
-        //llamar al middleware
+        //call the next middleware
         next();
         
     }catch(error){

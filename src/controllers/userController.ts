@@ -8,10 +8,10 @@ import bcrypt from 'bcrypt';
 import { UserRoles } from "../constants/UserRoles";
 
 export const userController = {
-    //Registro
+    //REGISTER
     async create(req:Request,res:Response){
         try {
-            const {firstName,lastName,email,phone,password,isActive,} = req.body;
+            const {firstName,lastName,email,phone,password,isActive} = req.body;
             const hashedPassword = await bcrypt.hash(password,10);
             
             const user = User.create({
@@ -34,7 +34,7 @@ export const userController = {
         }
     },
 
-    //Editar el perfil
+    //EDIT PROFILE
     async update(req:Request,res:Response){
         try {
             const userId = Number(req.params.id);
@@ -61,7 +61,7 @@ export const userController = {
 
 
 
-    //FIXME: SOLO para los ADMINISTRADORES
+    //FIXME: JUST FOR ADMINS
     //Get all Users Profile
     async getAll(req:Request,res:Response){
         try {
@@ -87,7 +87,7 @@ export const userController = {
         }
     },
 
-    //Get User Profile por ID
+    //Get User Profile by ID
     async getProfileById(req:Request,res:Response){
         try {
             const userId = Number(req.params.id);
@@ -115,25 +115,25 @@ export const userController = {
          }
     },
 
-    //Eliminar perfil
+    //DELETE PROFILE
     async delete(req:Request,res:Response){
         try {
-            //coger la id de la peticion
+            //take the id from the request
             const userId = Number(req.params.id);
-            //localizar el usuario por id
+            //find the user by id
             const user = await User.findOne({where:{id:userId}});
-            //si no encuentra usuario devuelve el estado 404
+            //if the user is not found, return a 404 status
             if(!user){
                 res.status(404).json({message:"User not found"});
                 return;
             }
-            //eliminar usuario
+            //remove the user
             await user.remove();
-            //devolver a estado 200
+            //return a 200 status
             res.status(200).json({message:"User deleted successfully"});
         }catch(error){
             console.error(error);
-            //Si hay un error, va hacer un estado 500
+            //if something goes wrong, return a 500 status
             res.status(500).json({message:"Something went wrong"});
         }
     },
@@ -183,13 +183,13 @@ export const userController = {
 
     async editUserRole(req:Request,res:Response){
         try{
-            //coje el usuario por id
+            //take the user id from the request
             const userId = Number(req.params.id);
 
-            //coje el role id de la peticion
+            //take the role id from the request
             const roleId = Number(req.body.roleId);
             
-            //encuentra un usuario por id
+            //find the user by id
             const userToChange = await User.findOne(
                 {   
                     relations:{
@@ -206,19 +206,19 @@ export const userController = {
                         id:userId
                     }
                 })
-            //si no se encuentra al usuario, devuelve un estado 404
+            //if the user is not found, return a 404 status
             if(!userToChange){
                 res.status(404).json({message:"User not found"});
                 return;
             }
 
-            //cambiar el rol del usuario
+            //change the role of the user
             userToChange.role.id = roleId;
     
-            //guardar el usuario en la database
+            //save the user in DB
             await User.save(userToChange);
 
-            //devolver a estado 200
+            //return a 200 status
             res.status(200).json({message:"Role updated successfully"});
 
         }catch(error){
