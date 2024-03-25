@@ -25,10 +25,10 @@ export const authMiddleware = (
             ) as JwtPayload;
 
         //add the token data to the request    
-        // req.tokenData = {
-        //     userId: decoded.userId,
-        //     userRole: decoded.userRole,
-        //     }
+        req.tokenData = {
+            userId: decoded.userId,
+            userRole: decoded.userRole,
+            }
         
 
         //call the next middleware

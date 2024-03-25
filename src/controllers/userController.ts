@@ -8,7 +8,7 @@ import bcrypt from 'bcrypt';
 import { UserRoles } from "../constants/UserRoles";
 
 export const userController = {
-    //REGISTER
+    //registro de usuario
     async create(req:Request,res:Response){
         try {
             const {firstName,lastName,email,phone,password,isActive} = req.body;
@@ -34,7 +34,7 @@ export const userController = {
         }
     },
 
-    //EDIT PROFILE
+    //editar los perfiles
     async update(req:Request,res:Response){
         try {
             const userId = Number(req.params.id);
@@ -61,8 +61,8 @@ export const userController = {
 
 
 
-    //FIXME: JUST FOR ADMINS
-    //Get all Users Profile
+    //FIXME: es solo para los admins
+    //Get all
     async getAll(req:Request,res:Response){
         try {
             const page = Number(req.query.page) || 1;
@@ -115,7 +115,7 @@ export const userController = {
          }
     },
 
-    //DELETE PROFILE
+    //Borrar los perfiles
     async delete(req:Request,res:Response){
         try {
             //take the id from the request
@@ -140,23 +140,20 @@ export const userController = {
     
     async getLogedUser(req:Request,res:Response){
         try {
-        //     const userId = req.tokenData.userId;
-        //     console.log(userId);
-        //     const user = await User.findOne({
-        //         relations:{
-        //             role:true
-        //         },
-        //         where:{
-        //             id:userId
-        //         }
-        //     });
-        //     res.json(user).status(200).json({message:"User found successfully"});
+            const userId = req.tokenData?.userId;
+            console.log(userId);
+            const user = await User.findOne({
+                relations:{
+                    role:true
+                },
+                where:{
+                    id:userId
+                }
+            });
+            res.json(user).status(200).json({message:"User found successfully"});
 
-        // }catch(error){
-        //     res.status(500).json({message:"Something went wrong"});
-        // }
-        console.log(req);}catch(error){
-            console.log(error);
+        }catch(error){
+            res.status(500).json({message:"Something went wrong"});
         }
     },
 

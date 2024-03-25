@@ -22,7 +22,7 @@ export const authController = {
               return;
            }
            
-             //hash the password         
+             //hash de password         
            const hashedPassword = bcrypt.hashSync(password, 10);
            
   

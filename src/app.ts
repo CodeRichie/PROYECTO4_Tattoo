@@ -26,5 +26,4 @@ app.post('/api/users',userController.create)
 app.put('/api/users',userController.update)
 app.delete('/api/users',userController.delete)
 
-
 export default app;
