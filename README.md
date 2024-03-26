@@ -69,10 +69,10 @@ Un cliente tendra una aplicacion para logearse y entrar en el client area y podr
          body:
         ```js
             {
-	                  "id": 80,
-	                  "firstName": "beaTRIZ",
+	                  "id": 1,
+	                  "firstName": "Gerardo",
 	                  "lastName": null,
-	                  "email": "bcarre@gmail.com",
+	                  "email": "gerardo@yahoo.com",
                       "phone": null,
 	                  "isActive": true,
                       "name": "client"
@@ -101,7 +101,7 @@ Un cliente tendra una aplicacion para logearse y entrar en el client area y podr
         body:
         ```js
             {
-                "day_date": "25/05/2024",
+                "day_date": "2024-01-26",
 	            "description": "little moon",
 	            "artist":1,
 	            "client":34,
@@ -140,8 +140,8 @@ Un cliente tendra una aplicacion para logearse y entrar en el client area y podr
         body:
         ```js
             {
-                "day_date": "2024-08-03T15:48:02.000Z",
-	            "description": "Lorem ipsum.",
+                "day_date": "2024-01-26",
+	            "description": "la que sea",
 	            "artist":5,
 	            "client":9,
 	            "price": 9734
