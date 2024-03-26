@@ -1,6 +1,6 @@
 # PROYECTO4_Tattoo
 
-# Studio Tattoos Backend database
+# Proyecto 4 Estudio de Tatuajes Backend
 
 <details>
   <ol>
