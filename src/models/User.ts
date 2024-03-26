@@ -32,12 +32,5 @@ export class User extends BaseEntity {
     @JoinColumn({name:"role_id"})
     role!:Role;
 
-    //Relation {1}--{0..n} clients
-    @OneToMany(() => Client, (client) => client.user)
-    clients?: Client[];
-
-    //Relation {1}--{0..n} with artists
-    @OneToMany(() => Artist, (artist) => artist.user)
-    artists?: Artist[];
 
 }

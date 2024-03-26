@@ -25,7 +25,7 @@ export const authController = {
              //hash de password         
            const hashedPassword = bcrypt.hashSync(password, 10);
            
-  
+           
            //Create the user with the values provided
            const userToCreate = User.create({
               firstName: firstName,
@@ -33,7 +33,7 @@ export const authController = {
               password : hashedPassword,
               role: UserRoles.CLIENT,
            });
-  
+
            //save the user in DB
            await User.save(userToCreate);
 
@@ -45,6 +45,7 @@ export const authController = {
            res.status(500).json({
             
               message: "Failed to create user",
+              
             
            });
            
