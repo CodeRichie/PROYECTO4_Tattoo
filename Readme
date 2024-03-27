@@ -54,15 +54,14 @@ Un cliente tendra una aplicacion para logearse y entrar en el client area y podr
 
          body:
         ```js
-            {
-	                  "id": 1,
-	                  "firstName": "Gerardo",
-	                  "lastName": null,
-	                  "email": "gerardo@yahoo.com",
-                      "phone": null,
-	                  "isActive": true,
-                      "name": "client"
-            }
+	{
+		"id": 36,
+		"firstName": "Dennis",
+		"lastName": "O'Keefe",
+		"email": "Kiley_Heaney62@hotmail.com",
+		"phone": 290867512,
+		"isActive": true
+	}
 
 
     //ADMIN ARTIST, CLIENT
