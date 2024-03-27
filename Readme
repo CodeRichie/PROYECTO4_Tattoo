@@ -33,10 +33,10 @@ Un cliente tendra una aplicacion para logearse y entrar en el client area y podr
         body:
         ``` js
             {
-		         "firstName": "richie",
-		         "email": "richie@gmail.com",
-		         "password": "123456789",
-		         "role": "Client"
+                 "firstName": "admin Ricard",
+                 "email": "ricardadmin@gmail.com",
+                 "password": "12345678",
+                 "role": "ADMIN"
             }
         ```
 - USERS INFO
@@ -72,7 +72,7 @@ Un cliente tendra una aplicacion para logearse y entrar en el client area y podr
         body:
         ``` js
             {
-                "email": "hafren@aol.com",
+                "email": "ricardadmin@gmail.com",
                 "password": "87654321"
             }
         ```
@@ -91,7 +91,7 @@ Un cliente tendra una aplicacion para logearse y entrar en el client area y podr
 	            "description": "little moon",
 	            "artist":1,
 	            "client":34,
-	            "price"50: 
+	            "price":50 
                 
             }
 
@@ -115,24 +115,22 @@ Un cliente tendra una aplicacion para logearse y entrar en el client area y podr
     //ADMIN, ARTIST, CLIENT
     - Eliminar citas con el delete
     
-            DELETE http://localhost:3000/api/appointments/2
+            DELETE http://localhost:3000/api/appointments/8
     
     
     //ADMIN, ARTIST
     - Editar citas con el put
     
-            PUT http://localhost:3000/api/appointments/3
+            PUT http://localhost:3000/api/appointments/1
 
         body:
         ```js
-            {
-                "day_date": "2024-01-26",
-	            "description": "la que sea",
-	            "artist":5,
-	            "client":9,
-	            "price": 9734
-                
-            }
+	{
+		"id": 2,
+		"day_date": "2024-07-15T06:33:45.000Z",
+		"description": "Somnus cubicularis distinctio urbanus.",
+		"price": 2917
+	}
 
     //ARTIST
     - Ver todas las citas existentes conmigo (role tatuador).

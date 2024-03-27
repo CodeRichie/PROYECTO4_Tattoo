@@ -4,7 +4,7 @@ import { authMiddleware } from '../middlewares/authMiddleware';
 import { authorizeMiddleware } from '../middlewares/authorize';
 const router = express.Router();
 
-//Appointment routes
+//Rutas de Appointment
 
 //create appointment
 router.post('/create',authMiddleware, authorizeMiddleware(["artist"]), appointmentController.create);
@@ -22,7 +22,7 @@ router.get('/client/appointments',authMiddleware, authorizeMiddleware(["client"]
 router.get('/artist/appointment',authMiddleware, authorizeMiddleware(["artist"]), appointmentController.getByLogedArtist);
 
 
-//////////////////// PROTECTED ROUTES //////////////////////
+//Rutas de Admin
 
 //get all appointments
 router.get('/',authMiddleware,authorizeMiddleware(["admin"]), appointmentController.getAll);

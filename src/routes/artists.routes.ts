@@ -5,11 +5,11 @@ import { authMiddleware } from '../middlewares/authMiddleware';
 
 const router = express.Router();
 
-//Artist Routes
+//Rutas Artists
 // get all artists
 router.get('/',authMiddleware,artistController.getAll);
 
-///Protected Routes
+///Rutas de admin
 //create artist
 router.post('/create',authorizeMiddleware(["Admin"]),artistController.create);
 

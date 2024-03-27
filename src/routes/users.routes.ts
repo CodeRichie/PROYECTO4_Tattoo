@@ -5,7 +5,7 @@ import { authorizeMiddleware } from '../middlewares/authorize';
 const router = express.Router();
 
 
-//////////      PROFILE ROUTES      //////////////////
+//Perfil Rutas
 
 //get loged user profile
 router.get('/profile/',authMiddleware, userController.getLogedUser);
@@ -18,7 +18,7 @@ router.put('/profile/update',authMiddleware, userController.updateLogedUser);
 router.get('/:id', authMiddleware, authorizeMiddleware(["Artist","Client"]), userController.getProfileById);
 
 
-///////////     PROTECTED ROUTES    /////////////////////
+//Rutas de admin
 
 //edit user role
 router.put('/edit/role/:id',authMiddleware,authorizeMiddleware(["Admin"]), userController.editUserRole);
