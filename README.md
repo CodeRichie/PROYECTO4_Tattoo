@@ -1,16 +1,4 @@
-# PROYECTO4_Tattoo
-
 # Proyecto 4 Estudio de Tatuajes Backend
-
-<details>
-  <ol>
-    <li><a href="#informacion">Informacion</a></li>
-    <li><a href="#requisitos">Los Requisitos</a></li>
-    <li><a href="#diagrama-bd">Diagrama</a></li>
-    <li><a href="#endpoints">Endpoints</a></li>
-    
-  </ol>
-</details>
 
 ## Informacion
 El proyecto de estudio de tatuajes, es un backend donde podemos gestionar citas y usuarios dentro de un estudio de tatuajes. 
@@ -35,8 +23,6 @@ Un cliente tendra una aplicacion para logearse y entrar en el client area y podr
 
 
 ## Endpoints
-<details>
-<summary>Endpoints</summary>
 
 - REGISTER/LOGIN
 
@@ -47,10 +33,10 @@ Un cliente tendra una aplicacion para logearse y entrar en el client area y podr
         body:
         ``` js
             {
-		         "firstName": "eduard kans",
-		         "email": "kans@hotmail.com",
-		         "password": "12345678",
-		         "role": "Admin"
+                 "firstName": "admin Ricard",
+                 "email": "ricardadmin@gmail.com",
+                 "password": "12345678",
+                 "role": "ADMIN"
             }
         ```
 - USERS INFO
@@ -68,15 +54,14 @@ Un cliente tendra una aplicacion para logearse y entrar en el client area y podr
 
          body:
         ```js
-            {
-	                  "id": 1,
-	                  "firstName": "Gerardo",
-	                  "lastName": null,
-	                  "email": "gerardo@yahoo.com",
-                      "phone": null,
-	                  "isActive": true,
-                      "name": "client"
-            }
+	{
+		"id": 36,
+		"firstName": "Dennis",
+		"lastName": "O'Keefe",
+		"email": "Kiley_Heaney62@hotmail.com",
+		"phone": 290867512,
+		"isActive": true
+	}
 
 
     //ADMIN ARTIST, CLIENT
@@ -86,7 +71,7 @@ Un cliente tendra una aplicacion para logearse y entrar en el client area y podr
         body:
         ``` js
             {
-                "email": "hafren@aol.com",
+                "email": "ricardadmin@gmail.com",
                 "password": "87654321"
             }
         ```
@@ -105,7 +90,7 @@ Un cliente tendra una aplicacion para logearse y entrar en el client area y podr
 	            "description": "little moon",
 	            "artist":1,
 	            "client":34,
-	            "price"50: 
+	            "price":50 
                 
             }
 
@@ -129,34 +114,24 @@ Un cliente tendra una aplicacion para logearse y entrar en el client area y podr
     //ADMIN, ARTIST, CLIENT
     - Eliminar citas con el delete
     
-            DELETE http://localhost:3000/api/appointments/2
+            DELETE http://localhost:3000/api/appointments/8
     
     
     //ADMIN, ARTIST
     - Editar citas con el put
     
-            PUT http://localhost:3000/api/appointments/3
+            PUT http://localhost:3000/api/appointments/1
 
         body:
         ```js
-            {
-                "day_date": "2024-01-26",
-	            "description": "la que sea",
-	            "artist":5,
-	            "client":9,
-	            "price": 9734
-                
-            }
+	{
+		"id": 2,
+		"day_date": "2024-07-15T06:33:45.000Z",
+		"description": "Somnus cubicularis distinctio urbanus.",
+		"price": 2917
+	}
 
     //ARTIST
     - Ver todas las citas existentes conmigo (role tatuador).
     
             GET http://localhost:3000/api/appointments/artist/appointment
-
-
-
-
-    
-
-
-</details>
