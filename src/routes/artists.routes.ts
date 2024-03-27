@@ -1,13 +1,17 @@
 import express,{Request, Response} from 'express';
 import { artistController } from '../controllers/artistController';
+import { authorizeMiddleware } from '../middlewares/authorize';
+import { authMiddleware } from '../middlewares/authMiddleware';
 
 const router = express.Router();
 
-//ARTISTS ROUTES
-router.get('/',artistController.getAll);
+//Artist Routes
+// get all artists
+router.get('/',authMiddleware,artistController.getAll);
 
-router.post('/create', artistController.create);
-
+///Protected Routes
+//create artist
+router.post('/create',authorizeMiddleware(["Admin"]),artistController.create);
 
 
 export default router;

@@ -8,7 +8,7 @@ import artistsRoutes from './artists.routes'
 
 const router = express.Router();
 
-//API ROUTES
+//API Routes
 
 // base routes
 router.use('/', baseRoutes);
@@ -16,7 +16,7 @@ router.use('/', baseRoutes);
 // users routes
 router.use('/users', usersRoutes);
 
-// Appointments routes
+// appointments routes
 router.use('/appointments', appointmentsRoutes);
 
 // auth routes

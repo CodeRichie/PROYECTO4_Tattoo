@@ -6,14 +6,24 @@ import { Client } from "../models/Client";
 import { Role } from "../models/Role";
 import bcrypt from 'bcrypt';
 import { UserRoles } from "../constants/UserRoles";
-
+// interface UserData {
+//     firstName: string,
+//     lastName: string,
+//     email: string,
+//     phone: string,
+//     password: string,
+//     isActive: string;
+//     role: number;
+// }
+  
 export const userController = {
-    //registro de usuario
+    //REGISTER
     async create(req:Request,res:Response){
         try {
-            const {firstName,lastName,email,phone,password,isActive} = req.body;
+            const {firstName,lastName,email,phone,password,isActive,role} = req.body;
             const hashedPassword = await bcrypt.hash(password,10);
-            
+            console.log("role",role)
+            console.log(UserRoles[role])
             const user = User.create({
                 firstName: firstName,
                 lastName: lastName,
@@ -21,7 +31,7 @@ export const userController = {
                 phone: phone,
                 password:hashedPassword,
                 isActive:isActive,
-                role:UserRoles.CLIENT
+                role:   UserRoles[role]
 
             });
             await user.save();
@@ -34,7 +44,7 @@ export const userController = {
         }
     },
 
-    //editar los perfiles
+    //EDIT PROFILE
     async update(req:Request,res:Response){
         try {
             const userId = Number(req.params.id);
@@ -61,8 +71,8 @@ export const userController = {
 
 
 
-    //FIXME: es solo para los admins
-    //Get all
+    //FIXME: JUST FOR ADMINS
+    //Get all Users Profile
     async getAll(req:Request,res:Response){
         try {
             const page = Number(req.query.page) || 1;
@@ -115,7 +125,7 @@ export const userController = {
          }
     },
 
-    //Borrar los perfiles
+    //DELETE PROFILE
     async delete(req:Request,res:Response){
         try {
             //take the id from the request

@@ -5,20 +5,21 @@ import { authorizeMiddleware } from '../middlewares/authorize';
 const router = express.Router();
 
 
-//Rutas perfiles
+//////////      PROFILE ROUTES      //////////////////
 
 //get loged user profile
-router.get('/profile/',authMiddleware,authorizeMiddleware(["Artist","Client"]), userController.getLogedUser);
+router.get('/profile/',authMiddleware, userController.getLogedUser);
 
 //Update loged user profile
-router.put('/profile/update',authMiddleware,authorizeMiddleware(["Artist","Client"]), userController.updateLogedUser);
+router.put('/profile/update',authMiddleware, userController.updateLogedUser);
 
 
 //get user by id
 router.get('/:id', authMiddleware, authorizeMiddleware(["Artist","Client"]), userController.getProfileById);
 
 
-//rutas protegidas
+///////////     PROTECTED ROUTES    /////////////////////
+
 //edit user role
 router.put('/edit/role/:id',authMiddleware,authorizeMiddleware(["Admin"]), userController.editUserRole);
 
@@ -26,7 +27,7 @@ router.put('/edit/role/:id',authMiddleware,authorizeMiddleware(["Admin"]), userC
 router.get('/all', authMiddleware,authorizeMiddleware(["Admin"]), userController.getAll);
 
 //Create user
-router.post('/create',authMiddleware,authorizeMiddleware(["Admin"]), userController.create);
+router.post('/create', userController.create);
 
 //edit user
 router.put('/edit/:id',authMiddleware,authorizeMiddleware(["Admin"]), userController.update);
