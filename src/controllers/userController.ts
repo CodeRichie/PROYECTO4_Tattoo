@@ -20,10 +20,9 @@ export const userController = {
     //REGISTER
     async create(req:Request,res:Response){
         try {
-            const {firstName,lastName,email,phone,password,isActive,role} = req.body;
+            const {firstName,lastName,email,phone,password,isActive,} = req.body;
             const hashedPassword = await bcrypt.hash(password,10);
-            console.log("role",role)
-            console.log(UserRoles[role])
+            console.log(req.body, firstName)
             const user = User.create({
                 firstName: firstName,
                 lastName: lastName,
@@ -31,11 +30,10 @@ export const userController = {
                 phone: phone,
                 password:hashedPassword,
                 isActive:isActive,
-                role:   UserRoles[role]
+                role:UserRoles.CLIENT
 
             });
             await user.save();
-
 
             res.status(200).json({message:"User created successfully"});
         }catch(error){
@@ -151,7 +149,6 @@ export const userController = {
     async getLogedUser(req:Request,res:Response){
         try {
             const userId = req.tokenData?.userId;
-            console.log(userId);
             const user = await User.findOne({
                 relations:{
                     role:true
@@ -160,10 +157,11 @@ export const userController = {
                     id:userId
                 }
             });
-            res.json(user).status(200).json({message:"User found successfully"});
+            return res.json(user).status(200);
 
         }catch(error){
-            res.status(500).json({message:"Something went wrong"});
+            console.log(error)
+            return res.status(500).json({message:"Something went wrong"});
         }
     },
 

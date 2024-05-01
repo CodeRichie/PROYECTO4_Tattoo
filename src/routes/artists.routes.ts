@@ -7,7 +7,7 @@ const router = express.Router();
 
 //Rutas Artists
 // get all artists
-router.get('/',authMiddleware,artistController.getAll);
+router.get('/',artistController.getAll);
 
 ///Rutas de admin
 //create artist

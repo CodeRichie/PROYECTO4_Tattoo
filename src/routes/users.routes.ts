@@ -7,6 +7,9 @@ const router = express.Router();
 
 //Perfil Rutas
 
+//Create user
+router.post('/create', userController.create);
+
 //get loged user profile
 router.get('/profile/',authMiddleware, userController.getLogedUser);
 
@@ -26,8 +29,6 @@ router.put('/edit/role/:id',authMiddleware,authorizeMiddleware(["Admin"]), userC
 //get all users
 router.get('/all', authMiddleware,authorizeMiddleware(["Admin"]), userController.getAll);
 
-//Create user
-router.post('/create', userController.create);
 
 //edit user
 router.put('/edit/:id',authMiddleware,authorizeMiddleware(["Admin"]), userController.update);

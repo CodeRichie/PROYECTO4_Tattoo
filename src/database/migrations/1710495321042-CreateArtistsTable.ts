@@ -33,7 +33,9 @@ export class CreateArtistsTable1710495321042 implements MigrationInterface {
                     {
                         columnNames:["user_id"],
                         referencedTableName: "users",
-                        referencedColumnNames:["id"]
+                        referencedColumnNames:["id"],
+                        onDelete: "CASCADE"
+
                     },
                     
                 ]
