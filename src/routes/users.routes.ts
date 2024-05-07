@@ -18,7 +18,7 @@ router.put('/profile/update',authMiddleware, userController.updateLogedUser);
 
 
 //get user by id
-router.get('/:id', authMiddleware, authorizeMiddleware(["Artist","Client"]), userController.getProfileById);
+router.get('/:id', authMiddleware, authorizeMiddleware(["Admin","Artist","Client"]), userController.getProfileById);
 
 
 //Rutas de admin
