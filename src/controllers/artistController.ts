@@ -13,7 +13,7 @@ export const artistController = {
             const artists = await Artist.findAndCount(
                 {   
                     relations:{
-                        user:true
+                        user:true,
                     },
                     
                     select:{
@@ -25,6 +25,7 @@ export const artistController = {
                     }
                 }
             );
+            console.log('artists', artists)
             res.json(artists);
 
         }catch(error){

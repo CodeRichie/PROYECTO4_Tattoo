@@ -1,15 +1,26 @@
 import { Request, Response, NextFunction } from 'express';
 import { UserRoles } from '../constants/UserRoles';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
 
 
 export const authorizeMiddleware = (allowedRoles: string[]) => {
 
     return (req: Request, res: Response, next: NextFunction) => {
-        const userRole = req.tokenData.userRole;
+        const token = req.headers.authorization?.split(" ")[1];
+        console.log('token', token)
+        if (!token) {
+            res.status(401).json({ message: "Unauthorized" });
+            return;
+        }
+
+        const decoded = jwt.verify(
+            token,
+            process.env.JWT_SECRET as string
+        ) as JwtPayload;
 
 
-        if (allowedRoles.includes(userRole)) {
+        if (allowedRoles.includes(decoded.userRole)) {
             next();
 
         }

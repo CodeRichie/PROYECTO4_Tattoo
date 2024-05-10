@@ -151,60 +151,69 @@ export const appointmentController = {
     //Get all Appointments by Client
     
     async getByLogedClient(req:Request,res:Response){
-
         const reqToken = req.tokenData.userId;
-        console.log(reqToken); 
-    
-        const logedClient = await Client.findOne({
-            select:{
-                id:true
-            },
-            where:{
-                userID:req.tokenData!.userId
+        console.log('reqToken',reqToken); 
+        
+        try {
+        
+            const logedClient = await Client.findOne({
+                select:{
+                    id:true
+                },
+                where:{
+                    userID: reqToken
             }});
-    
-            console.log(req.tokenData);
-        const appointments = await Appointment.find({
-            relations:{
-                artist:{
-                    user:true
+        
+                console.log('logedClient', logedClient);
+            const appointments = await Appointment.find({
+                relations:{
+                    artist:{
+                        user:true
+                    },
+                    client:{
+                        user:true
+                    },
                 },
-                client:{
-                    user:true
-                },
-            },
-            select:{
-                id:true,
-                day_date:true,
-                description:true,
-                price:true,
-                artist:{
+                select:{
+                    id:true,
+                    day_date:true,
+                    description:true,
+                    price:true,
+                    artist:{
+                            id:true,
+                            user:{
+                                firstName:true,
+                                email:true,
+                                phone:true,
+                            }                                
+                    },
+                    client:{
                         id:true,
                         user:{
                             firstName:true,
                             email:true,
-                            phone:true,
-                        }                                
-                },
-                client:{
-                    id:true,
-                    user:{
-                        firstName:true,
-                        email:true,
-                        phone:true,                
+                            phone:true,                
+                        }
+                    
+                    
                     }
-                
-                
+                },
+                where:{
+                    clientID:logedClient?.id
                 }
-            },
-            where:{
-                clientID:logedClient?.id
-            }});
+            });
+        
+                
+                console.log('first', appointments)
+                 res.json(appointments);
+            
     
-            res.json(appointments);
-    
-        },
+        } catch (error) {
+            console.log('error', error)
+            return res.status(500).json({message:"Something went wrong"});
 
+        }
+    },
     //Get all Appointments by Loged Artist
     async getByLogedArtist(req:Request,res:Response){
         const artist = await Artist.findOne({

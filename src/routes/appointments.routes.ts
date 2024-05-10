@@ -7,7 +7,7 @@ const router = express.Router();
 //Rutas de Appointment
 
 //create appointment
-router.post('/create',authMiddleware, authorizeMiddleware(["artist"]), appointmentController.create);
+router.post('/create',authMiddleware, appointmentController.create);
 
 //edit appointment
 router.put('/:id',authMiddleware, authorizeMiddleware(["artist"]), appointmentController.update);
@@ -19,7 +19,7 @@ router.delete('/:id',authMiddleware, authorizeMiddleware(["client","artist"]), a
 router.get('/client/appointments',authMiddleware, authorizeMiddleware(["client"]), appointmentController.getByLogedClient);
 
 //get appointments by artist
-router.get('/artist/appointment',authMiddleware, authorizeMiddleware(["artist"]), appointmentController.getByLogedArtist);
+router.get('/artist/appointment',authMiddleware, appointmentController.getByLogedArtist);
 
 
 //Rutas de Admin

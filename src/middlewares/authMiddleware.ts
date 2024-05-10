@@ -12,15 +12,14 @@ export const authMiddleware = (
 
     try {
         //split the token from the header    
-        console.log('req.headers', req.headers)
         const token = req.headers.authorization?.split(" ")[1];
-        console.log(token)
+        console.log('token',token)
         //if there is no token, return a 401 status
         if (!token) {
             res.status(401).json({ message: "Unauthorized" });
             return;
         }
-        console.log(process.env.JWT_SECRET)
+        console.log('secret',process.env.JWT_SECRET)
         //verify the token
         const decoded = jwt.verify(
             token,
