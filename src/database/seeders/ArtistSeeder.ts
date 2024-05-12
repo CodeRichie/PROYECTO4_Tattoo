@@ -20,9 +20,13 @@ export class ArtistSeeder extends Seeder{
             }
         );
         const artists = new ArtistFactory().createMany(ARTISTS);
+        const newArtists: User[] = []
         artists.forEach((artist: { user: User; }) =>{
-            artist.user= getRandomValueFromArray(users)
-        })
+            const user = users.pop()
+            if(user) 
+                return artist.user = user
+            }
+        )
         await Artist.save(artists);
     }
 }

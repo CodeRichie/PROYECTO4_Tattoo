@@ -19,6 +19,8 @@ export const authorizeMiddleware = (allowedRoles: string[]) => {
             process.env.JWT_SECRET as string
         ) as JwtPayload;
 
+            console.log(allowedRoles.includes(decoded.userRole))
+            console.log('decoded.userRole', decoded.userRole)
 
         if (allowedRoles.includes(decoded.userRole)) {
             next();

@@ -12,8 +12,8 @@ export const authMiddleware = (
 
     try {
         //split the token from the header    
+        // console.log('req.headers.authorization', req.headers.authorization)
         const token = req.headers.authorization?.split(" ")[1];
-        console.log('token',token)
         //if there is no token, return a 401 status
         if (!token) {
             res.status(401).json({ message: "Unauthorized" });
@@ -25,7 +25,7 @@ export const authMiddleware = (
             token,
             process.env.JWT_SECRET as string
         ) as JwtPayload;
-        console.log(decoded)
+        console.log('decoded',decoded)
         //add the token data to the request    
         req.tokenData = {
             userId: decoded.userId,
@@ -38,6 +38,7 @@ export const authMiddleware = (
         next();
 
     } catch (error) {
+        console.log('error', error)
         res.status(401).json({ message: "Unauthorized mal" });
 
         return;

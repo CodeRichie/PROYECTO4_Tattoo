@@ -92,18 +92,22 @@ export const appointmentController = {
     //Create Appointment
     async create(req:Request,res:Response){
         try {
+console.log(req.tokenData.userId)
             const {day_date,description,price,artist,client} = req.body;
+            console.log(day_date)
+
             const appointment = Appointment.create({
                 day_date:day_date,
                 description: description,
                 price:price,
-                artistID:artist,
+                artistID:req.tokenData.userId,
                 clientID:client
             });
 
             await appointment.save();
             res.json(appointment);
         }catch(error){
+            console.log(error)
             res.status(500).json({message:"Something went wrong"});
             
         }
@@ -154,8 +158,7 @@ export const appointmentController = {
         const reqToken = req.tokenData.userId;
         console.log('reqToken',reqToken); 
         
-        try {
-        
+        try {        
             const logedClient = await Client.findOne({
                 select:{
                     id:true
@@ -223,8 +226,8 @@ export const appointmentController = {
             where:{
                 userID:req.tokenData?.userId
             }});
-            console.log(req.tokenData);
-            console.log(artist);
+            console.log('req.tokenData?.userId', req.tokenData?.userId);
+            console.log('artist', artist);
     
         const appointments = await Appointment.find({
             relations:{
@@ -254,7 +257,7 @@ export const appointmentController = {
                 }
                 },
                 where:{
-                    artistID:artist?.id
+                    artistID:req.tokenData.userId
                 }
                 
             });

@@ -23,7 +23,7 @@ export class Appointment extends BaseEntity{
     price!: number;
 
     // Relation: Appointment {0..n}--{1} Artist
-    @ManyToOne(()=>Artist,(artist)=>artist.id)
+    @ManyToOne(()=>Artist,(artist)=>artist.userID)
     @JoinColumn({name:"artist_id"})
     artist!:Artist;
 

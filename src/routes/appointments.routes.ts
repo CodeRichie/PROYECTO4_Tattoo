@@ -21,7 +21,6 @@ router.get('/client/appointments',authMiddleware, authorizeMiddleware(["client"]
 //get appointments by artist
 router.get('/artist/appointment',authMiddleware, appointmentController.getByLogedArtist);
 
-
 //Rutas de Admin
 
 //get all appointments
