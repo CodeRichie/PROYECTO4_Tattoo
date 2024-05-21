@@ -26,8 +26,9 @@ export const appointmentController = {
                     },
                 }
             );
-            
-            res.json(appointments);
+            console.log('appointments', appointments)
+            console.log('totalAppointments', totalAppointments)
+            res.json(appointments).status(200);
 
         }catch(error){
             res.status(500).json({message:"Something went wrong"});
@@ -155,27 +156,19 @@ console.log(req.tokenData.userId)
     //Get all Appointments by Client
     
     async getByLogedClient(req:Request,res:Response){
-        const reqToken = req.tokenData.userId;
-        console.log('reqToken',reqToken); 
-        
         try {        
             const logedClient = await Client.findOne({
                 select:{
                     id:true
                 },
                 where:{
-                    userID: reqToken
+                    userID: req.tokenData?.userId
             }});
         
-                console.log('logedClient', logedClient);
             const appointments = await Appointment.find({
                 relations:{
-                    artist:{
-                        user:true
-                    },
-                    client:{
-                        user:true
-                    },
+                    artist:true,
+                    client:true,
                 },
                 select:{
                     id:true,
@@ -207,12 +200,10 @@ console.log(req.tokenData.userId)
             });
         
                 
-                console.log('first', appointments)
-                 res.json(appointments);
+                 res.json(appointments).status(200);
             
     
         } catch (error) {
-            console.log('error', error)
             return res.status(500).json({message:"Something went wrong"});
 
         }

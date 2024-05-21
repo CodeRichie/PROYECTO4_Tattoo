@@ -24,14 +24,14 @@ router.get('/:id', authMiddleware, userController.getProfileById);
 //Rutas de admin
 
 //edit user role
-router.put('/edit/role/:id',authMiddleware,authorizeMiddleware(["Admin"]), userController.editUserRole);
+router.put('/edit/role/:id',authMiddleware,authorizeMiddleware(["admin"]), userController.editUserRole);
 
 //get all users
-router.get('/all', authMiddleware,authorizeMiddleware(["Admin"]), userController.getAll);
+router.get('/', authMiddleware, userController.getAll);
 
 
 //edit user
-router.put('/edit/:id',authMiddleware,authorizeMiddleware(["Admin"]), userController.update);
+router.put('/edit/:id',authMiddleware,authorizeMiddleware(["admin"]), userController.update);
 
 //delete user
 router.delete('/delete/:id',authMiddleware, authorizeMiddleware(["Admin"]),userController.delete);

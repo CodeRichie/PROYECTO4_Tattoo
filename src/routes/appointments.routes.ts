@@ -16,7 +16,7 @@ router.put('/:id',authMiddleware, authorizeMiddleware(["artist"]), appointmentCo
 router.delete('/:id',authMiddleware, authorizeMiddleware(["client","artist"]), appointmentController.delete);
 
 //get appointments by client
-router.get('/client/appointments',authMiddleware, authorizeMiddleware(["client"]), appointmentController.getByLogedClient);
+router.get('/client/appointments',authMiddleware, appointmentController.getByLogedClient);
 
 //get appointments by artist
 router.get('/artist/appointment',authMiddleware, appointmentController.getByLogedArtist);
@@ -24,7 +24,7 @@ router.get('/artist/appointment',authMiddleware, appointmentController.getByLoge
 //Rutas de Admin
 
 //get all appointments
-router.get('/',authMiddleware,authorizeMiddleware(["admin"]), appointmentController.getAll);
+router.get('/',authMiddleware, appointmentController.getAll);
 
 //get appointment by id
 router.get('/:id',authMiddleware,authorizeMiddleware(["admin"]), appointmentController.getById);
